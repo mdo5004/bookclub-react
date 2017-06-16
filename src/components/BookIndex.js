@@ -1,16 +1,11 @@
 import React from 'react';
 import BookShow from './BookShow'
+import { connect } from 'react-redux';
 
-export default class BookIndex extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {books:[
-            {url:"http://i.imgur.com/SGMcdZ2.png", author:"Brandon Sanderson", title:"The Way of Kings", id:1},
-            {url:"http://i.imgur.com/JCPFkit.jpg", author:"Steven Erikson", title:"Gardens of the Moon", id:2}
-        ]}
-    }
+export class BookIndex extends React.Component {
+    
     render() {
-        const books = this.state.books.map( (book,index) => {
+        const books = this.props.books.map( (book,index) => {
             return <BookShow key={index} book={book}/>
         })
         return(
@@ -20,3 +15,9 @@ export default class BookIndex extends React.Component {
         )
     }
 }
+
+function mapStateToProps(state){
+    return {books: state.books}
+}
+
+export const ConnectedBookIndex = connect(mapStateToProps)(BookIndex)
