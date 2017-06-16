@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 //import { bindActionCreators } from 'redux';
 
 import NavBar from './components/NavBar'
-import {ConnectedBookDiscussion as BookDiscussion} from './components/BookDiscussion'
-import {ConnectedBookIndex as BookIndex} from './components/BookIndex'
+import {ConnectedBookDiscussion as BookDiscussion} from './containers/BookDiscussion'
+import {ConnectedBookIndex as BookIndex} from './containers/BookIndex'
 
 export class App extends Component {
     render() {

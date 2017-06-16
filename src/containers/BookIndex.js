@@ -1,5 +1,5 @@
 import React from 'react';
-import BookShow from './BookShow'
+import BookShow from '../components/BookShow'
 import { connect } from 'react-redux';
 
 export class BookIndex extends React.Component {

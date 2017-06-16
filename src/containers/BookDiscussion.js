@@ -1,7 +1,9 @@
 import React from 'react';
-import DiscussionShow from './DiscussionShow'
+import BookDetails from '../components/BookDetails'
+import DiscussionShow from '../components/DiscussionShow'
+import { connect } from 'react-redux';
 
-export default class Discussion extends React.Component {
+export class BookDiscussion extends React.Component {
     constructor(props) {
         super(props);
 
@@ -32,6 +34,8 @@ export default class Discussion extends React.Component {
     render(){
         return(
             <div>
+               <BookDetails book={this.props.book} />
+               <h1>Discussion</h1>
                 <DiscussionShow comments={this.state.comments}/>
                 <form onSubmit={this.handleOnSubmit}>
                 <input  type="text" 
@@ -45,3 +49,11 @@ export default class Discussion extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state,ownProps) => {
+    const book = state.books.find( book => book.id == ownProps.match.params.bookId )
+    return({
+        book: book
+    })
+}
+export const ConnectedBookDiscussion = connect(mapStateToProps,null)(BookDiscussion)
