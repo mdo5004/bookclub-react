@@ -4,5 +4,27 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import {Provider} from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+//import { browserHistory } from 'react-router';
+import {WrapperApp} from './App';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers/RootReducer'
+
+const store = createStore(
+    rootReducer,
+    compose(
+        applyMiddleware(thunk),
+        window.devToolsExtension ? window.devToolsExtension() : f => f
+    )
+)
+
+
+ReactDOM.render(
+    <Provider store={store}>
+        <WrapperApp />
+    </Provider>, 
+    document.getElementById('root')
+);
+
 registerServiceWorker();
