@@ -12,7 +12,7 @@ let initialState = {discussions:[
 const discussionsReducer = (state=initialState, action) => {
     switch(action.type) {
         case 'UPDATE_DISCUSSION':
-            console.log('updating discussion')
+            console.log('updating discussion with ' + action.payload)
             return state;
         default:
             return state;
