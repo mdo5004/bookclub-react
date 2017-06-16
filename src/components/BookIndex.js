@@ -5,8 +5,8 @@ export default class BookIndex extends React.Component {
     constructor(props){
         super(props);
         this.state = {books:[
-            {url:"http://i.imgur.com/SGMcdZ2.png", author:"Brandon Sanderson", title:"The Way of Kings"},
-            {url:"http://i.imgur.com/JCPFkit.jpg", author:"Steven Erikson", title:"Gardens of the Moon"}
+            {url:"http://i.imgur.com/SGMcdZ2.png", author:"Brandon Sanderson", title:"The Way of Kings", id:1},
+            {url:"http://i.imgur.com/JCPFkit.jpg", author:"Steven Erikson", title:"Gardens of the Moon", id:2}
         ]}
     }
     render() {
