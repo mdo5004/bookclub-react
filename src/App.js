@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 //import { bindActionCreators } from 'redux';
 
 import NavBar from './components/NavBar'
-import BookDiscussion from './components/BookDiscussion'
+import {ConnectedBookDiscussion as BookDiscussion} from './components/BookDiscussion'
 import {ConnectedBookIndex as BookIndex} from './components/BookIndex'
 
 export class App extends Component {
@@ -15,7 +15,7 @@ export class App extends Component {
                 <div className="App">
                    <NavBar />
                     <Route exact path='/' component={BookIndex} />
-                    <Route exact path='/discussion' component={BookDiscussion} />
+                    <Route path='/discussion/:bookId' component={BookDiscussion} />
                 </div>
             </Router>
         );

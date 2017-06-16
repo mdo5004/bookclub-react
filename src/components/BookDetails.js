@@ -5,8 +5,8 @@ export default function BookDetails(props){
     
         return (
             <div>
-                <h1>{props.title}</h1>
-                <h2>{props.author}</h2>
+                <h1>{props.book.title}</h1>
+                <h2>{props.book.author}</h2>
             </div>
         )
     
