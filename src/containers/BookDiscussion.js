@@ -9,19 +9,26 @@ export class BookDiscussion extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            text:''
+            text:'',
+            page:1
         }
     }
     handleOnSubmit = (event) => {
         event.preventDefault();
-
-        let comment= this.state.text
+        let comment= {...this.state, username: this.props.user.username, bookId: this.props.book.id}
+        this.setState({...this.state, text:''})
         this.props.createNewComment(comment);
     }
-    handleOnChange = (event) => {
+    handleDiscussionChange = (event) => {
         this.setState({
             ...this.state,
             text: event.target.value
+        })
+    }
+    handlePageChange = (event) => {
+        this.setState({
+            ...this.state,
+            page: event.target.value
         })
     }
     render(){
@@ -31,14 +38,18 @@ export class BookDiscussion extends React.Component {
                <h1>Discussion</h1>
                 <DiscussionShow comments={this.props.comments}/>
                 <form onSubmit={this.handleOnSubmit}>
-                
+
+                <label >What page are you on?</label>
+                <input  type="number"  id="pageNumber"
+                        value={this.state.page} 
+                        onChange={this.handlePageChange}/>
+                        <br></br>
                 <input  type="text" 
-                        placeholder='Discuss the book here'
+                        placeholder='Discuss the book here. Press return to comment.'
                         value={this.state.text} 
-                        onChange={this.handleOnChange}/>
-                        
+                        onChange={this.handleDiscussionChange}/>
+                        <input type="submit"/>
                 </form>
-                {this.state.text}
             </div>
         )
     }
@@ -55,11 +66,12 @@ const mapStateToProps = (state,ownProps) => {
     // eslint-disable-next-line
     const book = state.books.find( book => book.id == ownProps.match.params.bookId )
     // eslint-disable-next-line
-    const comments = state.discussions.discussions.find( discussion => discussion.bookId == ownProps.match.params.bookId )
+    const comments = state.discussions.find( discussion => discussion.bookId == ownProps.match.params.bookId )
     
     return({
         book: book,
         comments: comments.comments,
+        user: state.user
     })
 }
 export const ConnectedBookDiscussion = connect(mapStateToProps,mapDispatchToProps)(BookDiscussion)
