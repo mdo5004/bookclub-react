@@ -14,6 +14,7 @@ const discussionsReducer = (state=initialState, action) => {
         case 'UPDATE_DISCUSSION':
             let comment = action.payload
             let bookId = comment.bookId
+            // eslint-disable-next-line
             let index = state.findIndex( discussion => discussion.bookId == bookId )
             
             let comments = state[index].comments.concat({ 
