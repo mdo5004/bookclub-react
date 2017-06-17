@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getSearchResults } from '../actions/SearchActions'
+import { addBook } from '../actions/BookActions'
 
 export class BookSearch extends React.Component {
     constructor(){
@@ -13,7 +14,8 @@ export class BookSearch extends React.Component {
     }
 
     handleOnSubmit = (event) => {
-
+        event.preventDefault();
+        this.props.getSearchResults(this.state.text)
     }
     handleOnChange = (event) => {
         this.setState({
@@ -21,7 +23,7 @@ export class BookSearch extends React.Component {
         })
     }
     handleAddBook = (event, index) =>{
-
+        this.props.addBook(this.props.results[index])
     }
 
 
@@ -36,7 +38,7 @@ export class BookSearch extends React.Component {
         const body = this.props.results.map( (book, index) => {
             return (
                 <tr key={index}>
-                    <td>{index + 1}</td>
+                    <td><img src={book.small_image_url} alt={book.title}/></td>
                     <td>{book.title}</td>
                     <td>{book.author}</td>
                     <td><button onClick={event => this.handleAddBook(event, index)}>+</button></td>
@@ -47,7 +49,6 @@ export class BookSearch extends React.Component {
             <table className="table table-hover">
                 <thead>
                     <tr>
-
                         <th></th>
                         <th>Title</th>
                         <th>Author</th>
@@ -71,7 +72,8 @@ export class BookSearch extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        getSearchResults: getSearchResults
+        getSearchResults: getSearchResults,
+        addBook: addBook,
     }, dispatch)
 }
 
