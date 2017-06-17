@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import NavBar from './components/NavBar'
 import {ConnectedBookDiscussion as BookDiscussion} from './containers/BookDiscussion'
 import {ConnectedBookIndex as BookIndex} from './containers/BookIndex'
-
+import { ConnectedBookSearch as BookSearch } from './containers/BookSearch'
 export class App extends Component {
     render() {
         return (
@@ -16,6 +16,7 @@ export class App extends Component {
                  <div className="row navbar"><NavBar /></div>
                   <div className="row">
                     <Route exact path='/' component={BookIndex} />
+                    <Route exact path='/add' component={BookSearch} />
                     <Route path='/discussion/:bookId' component={BookDiscussion} />
                     </div>
                 </div>
