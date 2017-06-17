@@ -12,7 +12,7 @@ export class BookSearch extends React.Component {
             text: ''
         }
     }
-
+    
     handleOnSubmit = (event) => {
         event.preventDefault();
         this.props.getSearchResults(this.state.text)
