@@ -66,11 +66,10 @@ const mapStateToProps = (state,ownProps) => {
     // eslint-disable-next-line
     const book = state.books.find( book => book.id == ownProps.match.params.bookId )
     // eslint-disable-next-line
-    const comments = state.discussions.find( discussion => discussion.bookId == ownProps.match.params.bookId )
-    
+    const comments = state.discussions.filter( discussion => discussion.bookId == ownProps.match.params.bookId )
     return({
         book: book,
-        comments: comments.comments,
+        comments: comments,
         user: state.user
     })
 }
