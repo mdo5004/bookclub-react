@@ -23,12 +23,10 @@ let initialState = [
 
 const discussionsReducer = (state=initialState, action) => {
     switch(action.type) {
-        case 'UPDATE_DISCUSSION':
-            // TODO: RESTRUCTURE DATA TO NORMALIZE STATE.
-            // COMMENTS SHOULD CONTAIN A FOREIGN KEY INSTEAD OF BEING NESTED
-            // THIS WILL MAKE IT EASIER TO UPDATE THE STATE
-            
+        case 'UPDATE_DISCUSSION':            
             return state.concat(action.payload);
+        case 'LOAD_DISCUSSION':
+            return action.payload;
         default:
             return state;
     }

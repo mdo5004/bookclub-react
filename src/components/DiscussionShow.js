@@ -15,7 +15,6 @@ export default class DiscussionShow extends React.Component {
 
         return (
             <div>
-                <p>Discussion Panel</p>
                 <Scrollbars ref={ (scrollbars) => {this._scrollbars = scrollbars; }}
                    style={divStyle}
                     autoHide
