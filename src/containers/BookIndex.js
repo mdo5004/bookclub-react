@@ -1,7 +1,8 @@
 import React from 'react';
 import BookShow from '../components/BookShow'
+import {NavLink} from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import { ListGroup } from 'react-bootstrap'
 export class BookIndex extends React.Component {
     
     render() {
@@ -9,9 +10,11 @@ export class BookIndex extends React.Component {
             return <BookShow key={index} book={book}/>
         })
         return(
-            <div>
+            <ListGroup>
+               <NavLink className="list-group-item" exact to={`/add`}>+
+                </NavLink>
                 {books}
-            </div>
+            </ListGroup>
         )
     }
 }

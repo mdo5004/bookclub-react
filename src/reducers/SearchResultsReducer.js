@@ -266,21 +266,6 @@ const searchResultsReducer = (state=initialState, action) => {
     switch(action.type){
         case 'GET_SEARCH_RESULTS':
             console.log("getting search results...")
-            fetch(`/search?q=${action.payload}`,{
-                accept: 'application/json'
-            })
-            .then( (books) => {
-                debugger
-                return books })
-            .then( json => {
-                debugger
-                return json
-            })
-            .catch(console.log)
-            // query the API with the parameters
-            // add the results to the state
-            // this will need to be asynchronous
-            
             return state;
         default:
             return state;

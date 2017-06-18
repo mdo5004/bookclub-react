@@ -24,7 +24,8 @@ const discussionsReducer = (state=initialState, action) => {
             });
             
             let newSubState = {...state[index], comments: comments}
-            return [ state.slice(0,index), newSubState, state.slice(index+1) ];
+            
+            return  ...state.slice(0,index), newSubState, state.slice(index+1) ;
         default:
             return state;
     }

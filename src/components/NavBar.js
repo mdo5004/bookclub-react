@@ -1,6 +1,6 @@
 import React from 'react';
 //import {NavLink} from 'react-router-dom';
-import { Nav, NavItem } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
 export default class NavBar extends React.Component {
     constructor(){
         super();
@@ -15,10 +15,13 @@ export default class NavBar extends React.Component {
     }
     render() {
         return(
-            <Nav bsStyle="tabs" activeKey={this.state.current} onSelect={this.handleSelect}>
-                <NavItem eventKey={1} href="/">Home</NavItem>
-                <NavItem eventKey={2} href="/add">Add Book</NavItem>
-            </Nav>
+            <Navbar>
+                <Navbar.Header>
+                <Navbar.Brand>
+                bookclub
+                </Navbar.Brand>
+                </Navbar.Header>
+            </Navbar>
             )
     }
 }

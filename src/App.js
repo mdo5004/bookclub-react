@@ -12,13 +12,17 @@ export class App extends Component {
     render() {
         return (
             <Router>
+               <div>
+                <NavBar />
                 <div className="App container">
-                 <div className="row navbar"><NavBar /></div>
-                  <div className="row">
-                    <Route exact path='/' component={BookIndex} />
-                    <Route exact path='/add' component={BookSearch} />
-                    <Route path='/discussion/:bookId' component={BookDiscussion} />
+                    <div className="col-md-3">
+                        <Route path='/' component={BookIndex} />
                     </div>
+                    <div className="col-md-9">
+                        <Route path='/add' component={BookSearch} />
+                        <Route path='/discussion/:bookId' component={BookDiscussion} />
+                    </div>
+                </div>
                 </div>
             </Router>
         );
