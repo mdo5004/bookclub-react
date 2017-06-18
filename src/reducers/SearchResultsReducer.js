@@ -264,9 +264,11 @@ updated_at: "2017-06-17T18:31:45.715Z"
 
 const searchResultsReducer = (state=initialState, action) => {
     switch(action.type){
-        case 'GET_SEARCH_RESULTS':
+        case 'START_SEARCH':
             console.log("getting search results...")
             return state;
+        case 'GET_SEARCH_RESULTS':
+            return action.payload;
         default:
             return state;
     }

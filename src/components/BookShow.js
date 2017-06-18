@@ -1,6 +1,5 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import { Panel } from 'react-bootstrap';
 export default class BookShow extends React.Component {
     
     render() {
