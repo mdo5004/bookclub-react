@@ -10,7 +10,7 @@ export default class DiscussionShow extends React.Component {
 
         }
         let comments = this.props.comments.map( (comment,index) =>{
-            return (<p key={index}><span>{comment.username} (pg {comment.page}):</span> {comment.text}</p>)
+            return (<p key={index}><span className="font-heavy">{comment.username}</span> <span className="page-number">(pg {comment.page}):</span> <span className="font-light">{comment.text}</span></p>)
         })
 
         return (
