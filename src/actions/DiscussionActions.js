@@ -2,10 +2,11 @@ import fetch from 'isomorphic-fetch'
 export function createNewComment(comment) {
     return (dispatch) => { 
         dispatch({ type: 'UPDATE_DISCUSSION', payload: comment});
-        return fetch(`/books/${comment.book_id}/comments`, {
+        let params = `text=${comment.text}&username=${comment.username}&page=${comment.page}`
+        return fetch(`/books/${comment.book_id}/comments?${params}`, {
             method: 'POST',
             mode: 'cors',
-            body: {comment: comment},
+            body: JSON.stringify(comment),
             accept: 'application/json',
         }).catch(console.log)
     }

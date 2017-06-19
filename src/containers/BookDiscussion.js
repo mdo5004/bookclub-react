@@ -39,9 +39,12 @@ export class BookDiscussion extends React.Component {
 
     handleOnSubmit = (event) => {
         event.preventDefault();
-        let comment= {...this.state, username: this.props.user.username, book_id: this.props.book.id}
-        this.setState({...this.state, text:''})
-        this.props.createNewComment(comment);
+        if (this.state.text.trim() !== '' )
+        {
+            let comment= {...this.state, username: this.props.user.username, book_id: this.props.book.id}
+            this.setState({...this.state, text:''})
+            this.props.createNewComment(comment);
+        }
     }
     handleDiscussionChange = (event) => {
         this.setState({
