@@ -1,5 +1,4 @@
 import React from 'react';
-import BookDetails from '../components/BookDetails'
 import DiscussionShow from '../components/DiscussionShow'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -13,30 +12,29 @@ export class BookDiscussion extends React.Component {
             page:1
         }
     }
-    
+
     render(){
         return(
             <div>
-               <BookDetails book={this.props.book} />
-               <h1>Discussion</h1>
+                <h1>Discussion</h1>
                 <DiscussionShow comments={this.props.comments}/>
                 <form onSubmit={this.handleOnSubmit}>
 
-                <label >What page are you on?</label>
-                <input  type="number"  id="pageNumber"
+                    <label >What page are you on?</label>
+                    <input  type="number"  id="pageNumber"
                         value={this.state.page} 
                         onChange={this.handlePageChange}/>
-                        <br></br>
-                <input  type="text" 
+                    <br></br>
+                    <input  type="text" 
                         placeholder='Discuss the book here. Press return to comment.'
                         value={this.state.text} 
                         onChange={this.handleDiscussionChange}/>
-                        <input type="submit"/>
+                    <input type="submit"/>
                 </form>
             </div>
         )
     }
-    
+
     handleOnSubmit = (event) => {
         event.preventDefault();
         let comment= {...this.state, username: this.props.user.username, book_id: this.props.book.id}
@@ -55,10 +53,17 @@ export class BookDiscussion extends React.Component {
             page: event.target.value
         })
     }
-    
+
     componentDidMount(){
+        console.log("Component did mount")
         this.props.loadDiscussion(this.props.id)
+    }
+    componentDidUpdate(prevProps){
         
+        if (this.props.id !== prevProps.id){
+        this.props.loadDiscussion(this.props.id)
+            console.log("Component props id did update")
+        }
     }
 }
 
@@ -73,7 +78,6 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state,ownProps) => {
     // eslint-disable-next-line
     const book = state.books.find( book => book.id == ownProps.match.params.bookId )
-    
     // eslint-disable-next-line
     const comments = state.discussions.filter( discussion => discussion.book_id == ownProps.match.params.bookId )
     return({
