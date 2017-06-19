@@ -1,29 +1,21 @@
+import fetch from 'isomorphic-fetch'
 export function createNewComment(comment) {
     return (dispatch) => { 
         dispatch({ type: 'UPDATE_DISCUSSION', payload: comment});
-        return fetch(`/book/${comment.bookId}/comments`, {
+        return fetch(`/book/${comment.book_id}/comments`, {
             method: 'POST',
-            values: comment,
+            mode: 'cors',
+            body: {comment: comment},
             accept: 'application/json',
         }).catch(console.log)
     }
 }
 
-//export function updateDiscussion(discussion) {
-//    return (dispatch) => {
-//        dispatch({type: 'UPDATING_DISCUSSION'});
-//        return fetch(`/book/${book.id}/comments`, {
-//            method: 'POST',
-//            values: discussion,
-//            accept: 'application/json',
-//        }).then(response => response.json())
-//          .then( results => dispatch({type:"UPDATE_DISCUSSION", payload: results}))
-//    }
-//}
-export function loadDiscussion(book) {
+
+export function loadDiscussion(id) {
     return (dispatch) => {
         dispatch({type:'UPDATING_DISCUSSION'});
-        return fetch(`/book/${book.id}/comments`, {
+        return fetch(`/book/${id}/comments`, {
             accept: 'application/json'
         }).then( response => response.json())
           .then( results => dispatch({type:"LOAD_DISCUSSION", payload: results}))
