@@ -2,11 +2,15 @@ import fetch from 'isomorphic-fetch'
 export function createNewComment(comment) {
     return (dispatch) => { 
         dispatch({ type: 'UPDATE_DISCUSSION', payload: comment});
+        
+        // when I write out the params like this and inject them into the URL it works
         let params = `text=${comment.text}&username=${comment.username}&page=${comment.page}`
+        
         return fetch(`/books/${comment.book_id}/comments?${params}`, {
             method: 'POST',
             mode: 'cors',
-            body: JSON.stringify(comment),
+            body: JSON.stringify(comment), // this doesn't work
+          //body: comment,                 // neither does this
             accept: 'application/json',
         }).catch(console.log)
     }
