@@ -11,8 +11,8 @@ const booksReducer = (state = initialState, action) => {
             console.log("TODO: Remove book")
             return state;
         case 'GET_BOOKS':
-            console.log("TODO: Get books")
-            return state;
+            
+            return action.payload;
         default:
             return state;
     }

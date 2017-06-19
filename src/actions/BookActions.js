@@ -4,7 +4,7 @@ export function addBook(index) {
 export function removeBook(book) {
     return { type: 'REMOVE_BOOK', payload: book}
 }
-export function loadBooks() {
+export function loadBooks(dispatch) {
     return (dispatch) => {
         dispatch({type: 'LOADING_BOOKS'});
         return fetch('/books', {
