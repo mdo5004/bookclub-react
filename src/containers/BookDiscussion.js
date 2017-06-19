@@ -3,6 +3,7 @@ import DiscussionShow from '../components/DiscussionShow'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createNewComment, loadDiscussion } from '../actions/DiscussionActions'
+import { FormControl } from 'react-bootstrap';
 
 export class BookDiscussion extends React.Component {
     constructor(props){
@@ -25,11 +26,12 @@ export class BookDiscussion extends React.Component {
                         value={this.state.page} 
                         onChange={this.handlePageChange}/>
                     <br></br>
-                    <input  type="text" 
+                    <FormControl 
+                        componentClass="input" style={{ height: 40 }} 
                         placeholder='Discuss the book here. Press return to comment.'
                         value={this.state.text} 
                         onChange={this.handleDiscussionChange}/>
-                    <input type="submit"/>
+                    <input type="submit" hidden/>
                 </form>
             </div>
         )
@@ -58,13 +60,13 @@ export class BookDiscussion extends React.Component {
         console.log("Component did mount")
         this.props.loadDiscussion(this.props.id)
     }
-    componentDidUpdate(prevProps){
-        
-        if (this.props.id !== prevProps.id){
+componentDidUpdate(prevProps){
+
+    if (this.props.id !== prevProps.id){
         this.props.loadDiscussion(this.props.id)
-            console.log("Component props id did update")
-        }
+        console.log("Component props id did update")
     }
+}
 }
 
 const mapDispatchToProps = (dispatch) => {
