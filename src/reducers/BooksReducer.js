@@ -6,8 +6,7 @@ const booksReducer = (state = initialState, action) => {
             console.log("Adding book...")
             return state.concat(action.payload);
         case 'REMOVE_BOOK':
-            console.log("TODO: Remove book")
-            return state;
+            return state.filter( book => book.id !== action.payload );
         case 'GET_BOOKS':
             
             return action.payload;

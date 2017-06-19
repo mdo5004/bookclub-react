@@ -1,19 +1,26 @@
 export function addBook(book) {
     return (dispatch) => {
-        dispatch( {type: 'ADD_BOOK', payload: book});
+        
         return fetch(`/books`, {
             method: 'POST',
-            mode: 'cors',
+            mode: 'cors', //is this necessary?
             body: JSON.stringify(book),
             headers: {
                 "Content-Type": "application/json"
             }
-        }).catch(console.log)
+        }).then( response => response.json())
+          .then( book => dispatch( {type: 'ADD_BOOK', payload: book}) )
+          .catch(console.log)
     }
     
 }
-export function removeBook(book) {
-    return { type: 'REMOVE_BOOK', payload: book}
+export function removeBook(id) {
+    return (dispatch) => {
+     dispatch({ type: 'REMOVE_BOOK', payload: id});
+        return fetch(`/books/${id}`,{
+            method: 'PATCH'
+        }).catch(console.log)
+    }
 }
 export function loadBooks(dispatch) {
     return (dispatch) => {

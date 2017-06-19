@@ -84,7 +84,10 @@ const mapStateToProps = (state,ownProps) => {
     // eslint-disable-next-line
     const book = state.books.find( book => book.id == ownProps.match.params.bookId )
     // eslint-disable-next-line
-    const comments = state.discussions.filter( discussion => discussion.book_id == ownProps.match.params.bookId )
+    const comments = state.discussions.filter( 
+        discussion => 
+        discussion.book_id == ownProps.match.params.bookId 
+    )
     return({
         id: ownProps.match.params.bookId,
         book: book,
@@ -92,4 +95,14 @@ const mapStateToProps = (state,ownProps) => {
         user: state.user
     })
 }
+BookDiscussion.defaultProps = {
+    id: '',
+    book: {
+        id: '',
+    },
+    user: {
+        username:''
+    },    
+}
+
 export const ConnectedBookDiscussion = connect(mapStateToProps,mapDispatchToProps)(BookDiscussion)
