@@ -11,7 +11,7 @@ export class BookIndex extends React.Component {
 
     render() {
         const books = this.props.books.map( (book,index) => {
-            return <div className="list-group-item" key={index}><BookShow  book={book}/>
+            return <div className="list-group-item" key={index}><BookShow book={book}/>
                 <Button bsSize="small" onClick={ (event) => this.removeBookFromList(event,book.id) }>remove</Button>
             </div>
         })
