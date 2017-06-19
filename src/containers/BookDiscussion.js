@@ -3,7 +3,7 @@ import BookDetails from '../components/BookDetails'
 import DiscussionShow from '../components/DiscussionShow'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { createNewComment } from '../actions/DiscussionActions'
+import { createNewComment, loadDiscussion } from '../actions/DiscussionActions'
 
 export class BookDiscussion extends React.Component {
     constructor(props){
@@ -13,24 +13,7 @@ export class BookDiscussion extends React.Component {
             page:1
         }
     }
-    handleOnSubmit = (event) => {
-        event.preventDefault();
-        let comment= {...this.state, username: this.props.user.username, bookId: this.props.book.id}
-        this.setState({...this.state, text:''})
-        this.props.createNewComment(comment);
-    }
-    handleDiscussionChange = (event) => {
-        this.setState({
-            ...this.state,
-            text: event.target.value
-        })
-    }
-    handlePageChange = (event) => {
-        this.setState({
-            ...this.state,
-            page: event.target.value
-        })
-    }
+    
     render(){
         return(
             <div>
@@ -53,11 +36,36 @@ export class BookDiscussion extends React.Component {
             </div>
         )
     }
+    
+    handleOnSubmit = (event) => {
+        event.preventDefault();
+        let comment= {...this.state, username: this.props.user.username, book_id: this.props.book.id}
+        this.setState({...this.state, text:''})
+        this.props.createNewComment(comment);
+    }
+    handleDiscussionChange = (event) => {
+        this.setState({
+            ...this.state,
+            text: event.target.value
+        })
+    }
+    handlePageChange = (event) => {
+        this.setState({
+            ...this.state,
+            page: event.target.value
+        })
+    }
+    
+    componentDidMount(){
+        this.props.loadDiscussion(this.props.id)
+        
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        createNewComment: createNewComment
+        createNewComment: createNewComment,
+        loadDiscussion: loadDiscussion,
     }, dispatch)
 }
 
@@ -65,9 +73,11 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state,ownProps) => {
     // eslint-disable-next-line
     const book = state.books.find( book => book.id == ownProps.match.params.bookId )
+    
     // eslint-disable-next-line
-    const comments = state.discussions.filter( discussion => discussion.bookId == ownProps.match.params.bookId )
+    const comments = state.discussions.filter( discussion => discussion.book_id == ownProps.match.params.bookId )
     return({
+        id: ownProps.match.params.bookId,
         book: book,
         comments: comments,
         user: state.user
