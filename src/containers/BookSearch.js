@@ -22,8 +22,10 @@ export class BookSearch extends React.Component {
             text: event.target.value
         })
     }
-    handleAddBook = (event, index) =>{
-        this.props.addBook(this.props.results[index])
+    handleAddBook = (event, book) =>{
+        if (!this.props.currentTitles.includes(book.title)) {
+        this.props.addBook(book)
+        }
     }
 
 
@@ -41,7 +43,7 @@ export class BookSearch extends React.Component {
                     <td><img src={book.small_image_url} alt={book.title}/></td>
                     <td>{book.title}</td>
                     <td>{book.author}</td>
-                    <td><button onClick={event => this.handleAddBook(event, index)}>+</button></td>
+                    <td><button onClick={event => this.handleAddBook(event, book)}>+</button></td>
                 </tr>
             )
         }, '')
@@ -79,8 +81,10 @@ const mapDispatchToProps = (dispatch) => {
 
 
 const mapStateToProps = (state) => {
+    let currentTitles = state.books.map( book => book.title )
     return({
-        results: state.searchResults || []
+        results: state.searchResults || [],
+        currentTitles: currentTitles,
     })
 }
 export const ConnectedBookSearch = connect(mapStateToProps,mapDispatchToProps)(BookSearch)

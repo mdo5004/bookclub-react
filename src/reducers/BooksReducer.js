@@ -4,8 +4,6 @@ const booksReducer = (state = initialState, action) => {
     switch(action.type) {
         case 'ADD_BOOK':
             console.log("Adding book...")
-            // write to API to add this search result to Books.
-//            const request = new Request('')
             return state.concat(action.payload);
         case 'REMOVE_BOOK':
             console.log("TODO: Remove book")
