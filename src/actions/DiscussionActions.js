@@ -3,7 +3,7 @@ export function createNewComment(comment) {
     return (dispatch) => { 
         dispatch({ type: 'UPDATE_DISCUSSION', payload: comment});
 
-        return fetch(`/api/books/${comment.book_id}/comments`, {
+        return fetch(`/books/${comment.book_id}/comments`, {
             method: 'POST',
             mode: 'cors',
             body: JSON.stringify(comment),
@@ -18,7 +18,7 @@ export function createNewComment(comment) {
 export function loadDiscussion(id) {
     return (dispatch) => {
         dispatch({type:'UPDATING_DISCUSSION'});
-        return fetch(`/api/books/${id}/comments`, {
+        return fetch(`/books/${id}/comments`, {
             accept: 'application/json'
         }).then( response => response.json())
             .then( results => dispatch({type:"LOAD_DISCUSSION", payload: results}))

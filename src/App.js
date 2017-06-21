@@ -4,11 +4,11 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import NavBar from './components/NavBar'
+import { ConnectedNavBar as NavBar } from './containers/NavBar'
 import {ConnectedBookDiscussion as BookDiscussion} from './containers/BookDiscussion'
-import {ConnectedBookIndex as BookIndex} from './containers/BookIndex'
+import { ConnectedBookIndex as BookIndex} from './containers/BookIndex'
 import { ConnectedBookSearch as BookSearch } from './containers/BookSearch'
-
+import { ConnectedUserPage as UserPage } from './containers/UserPage';
 import { loadBooks } from './actions/BookActions'
 
 
@@ -24,6 +24,7 @@ export class App extends Component {
                     </div>
                     <div className="col-md-9">
                         <Route exact path='/' render={ () => { return(<p>Select a book from the list or add a new book</p>)}} />
+                        <Route exact path='/user' component={UserPage} />
                         <Route path='/add' component={BookSearch} />
                         <Route path='/discussion/:bookId' component={BookDiscussion} />
                     </div>
