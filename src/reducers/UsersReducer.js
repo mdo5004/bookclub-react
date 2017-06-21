@@ -1,4 +1,4 @@
-const initialState = {username:'anonymous'}
+const initialState = {username:'mdo5004'}
 const usersReducer = (state = initialState, action) => {
     switch(action.type) {
         case 'SET_USER_NAME':

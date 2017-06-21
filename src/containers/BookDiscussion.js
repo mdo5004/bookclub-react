@@ -62,12 +62,13 @@ export class BookDiscussion extends React.Component {
     componentDidMount(){
         console.log("Component did mount")
         this.props.loadDiscussion(this.props.id)
+        
     }
 componentDidUpdate(prevProps){
-
     if (this.props.id !== prevProps.id){
         this.props.loadDiscussion(this.props.id)
         console.log("Component props id did update")
+        console.log("Furthest page: " + this.props.furthestPage)
     }
 }
 }
@@ -88,11 +89,17 @@ const mapStateToProps = (state,ownProps) => {
         discussion => 
         discussion.book_id == ownProps.match.params.bookId 
     )
+    const myComments = comments.filter( comment => comment.user.username == state.user.username)
+    let pages = myComments.map( comment => comment.page )
+    pages.sort(function(a, b) {
+        return a - b;
+    });
+    
     return({
         id: ownProps.match.params.bookId,
         book: book,
         comments: comments,
-        user: state.user
+        user: state.user,
     })
 }
 BookDiscussion.defaultProps = {
