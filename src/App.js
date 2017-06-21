@@ -24,7 +24,7 @@ export class App extends Component {
                     </div>
                     <div className="col-md-9">
                         <Route exact path='/' render={ () => { return(<p>Select a book from the list or add a new book</p>)}} />
-                        <Route exact path='/user' component={UserPage} />
+                        <Route path='/user' component={UserPage} />
                         <Route path='/add' component={BookSearch} />
                         <Route path='/discussion/:bookId' component={BookDiscussion} />
                     </div>

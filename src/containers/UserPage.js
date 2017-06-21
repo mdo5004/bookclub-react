@@ -17,7 +17,6 @@ constructor(props){
     saveUsername = (event) => {
         event.preventDefault();
         this.props.setUsername(this.state.username)
-        
     }
     changeUsername = (event) => {
         this.setState({
