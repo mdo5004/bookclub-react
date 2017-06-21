@@ -1,23 +1,24 @@
 {
-    "name": "bookclub-react",
-    "version": "0.1.0",
-    "private": true,
-    "dependencies": {
-        "react": "^15.6.1",
-        "react-bootstrap": "^0.31.0",
-        "react-custom-scrollbars": "^4.1.2",
-        "react-dom": "^15.6.1",
-        "react-redux": "^5.0.5",
-        "react-router-dom": "^4.1.1",
-        "redux": "^3.6.0",
-        "redux-thunk": "^2.2.0"
-    },
-
-    "scripts": {
-        "start": "node server",
-        "build": "npm run build",
-        "test": "react-scripts test --env=jsdom",
-        "eject": "react-scripts eject"
-    },
-    "proxy": "https://bookclub-for-goodreads.herokuapp.com/"
+  "name": "bookclub-react",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "express": "^4.15.3",
+    "react": "^15.6.1",
+    "react-bootstrap": "^0.31.0",
+    "react-custom-scrollbars": "^4.1.2",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
+    "react-router-dom": "^4.1.1",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "build": "npm run build",
+      "postinstall": "npm run build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "proxy": "https://bookclub-for-goodreads.herokuapp.com/"
 }
