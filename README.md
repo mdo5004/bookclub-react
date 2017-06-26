@@ -4,12 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Requirements
 
-
 * npm 
-(for API portion: )
-* Ruby v2.3.4 
-* Postgresql
-* bundler
 
 ## Installation
 
