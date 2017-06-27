@@ -86,9 +86,10 @@ const mapStateToProps = (state,ownProps) => {
     const book = state.books.find( book => book.id == ownProps.match.params.bookId )
     // eslint-disable-next-line
     const comments = state.discussions.filter( 
-        discussion => 
-        discussion.book_id == ownProps.match.params.bookId 
+        // eslint-disable-next-line
+        discussion => discussion.book_id == ownProps.match.params.bookId 
     )
+    // eslint-disable-next-line
     const myComments = comments.filter( comment => comment.user.username == state.user.username)
     let pages = myComments.map( comment => comment.page )
     pages.sort(function(a, b) {

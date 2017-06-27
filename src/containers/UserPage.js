@@ -1,5 +1,5 @@
 import React from 'react';
-import UserShow from '../components/UserShow';
+//import UserShow from '../components/UserShow';
 import { Well, FormControl, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { setUsername } from '../actions/UsersActions';

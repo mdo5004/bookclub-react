@@ -1,7 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 //import {NavLink} from 'react-router-dom';
 import { Navbar } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Login from '../components/Login'
 import Logout from '../components/Logout'
@@ -26,7 +27,6 @@ export class NavBar extends Component {
             <Navbar>
                 <Navbar.Header>
                     <Navbar.Brand>
-
                         bookclub for Goodreads
                     </Navbar.Brand>
                 </Navbar.Header>
