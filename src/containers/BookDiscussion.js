@@ -89,7 +89,8 @@ const mapStateToProps = (state,ownProps) => {
         discussion => 
         discussion.book_id == ownProps.match.params.bookId 
     )
-    const myComments = comments.filter( comment => comment.user.username == state.user.username)
+    
+    const myComments = comments.filter( comment => comment.username == state.user.username)
     let pages = myComments.map( comment => comment.page )
     pages.sort(function(a, b) {
         return a - b;
