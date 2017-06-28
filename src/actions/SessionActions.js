@@ -8,85 +8,85 @@ export const LOGOUT_FAILURE = 'LOGOUT_FAILURE'
 
 export function loginUser(creds) {
 
-  let config = {
-    method: 'POST',
-    headers: { 'Content-Type':'application/x-www-form-urlencoded' },
-    body: `username=${creds.username}&password=${creds.password}`
-  }
+    let config = {
+        method: 'POST',
+        headers: { 'Content-Type':'application/x-www-form-urlencoded' },
+        body: `username=${creds.username}&password=${creds.password}`
+    }
 
-  return dispatch => {
-    // We dispatch requestLogin to kickoff the call to the API
-    dispatch(requestLogin(creds))
+    return dispatch => {
+        
+        dispatch(requestLogin(creds))
 
-    return fetch('/sessions', config)
-      .then(response =>
-        response.json().then(user => ({ user, response }))
-            ).then(({ user, response }) =>  {
-        if (!response.ok) {
-          // If there was a problem, we want to
-          // dispatch the error condition
-          dispatch(loginError(user.message))
-          return Promise.reject(user)
-        } else {
-          // If login was successful, set the token in local storage
-          localStorage.setItem('id_token', user.id_token)
-          localStorage.setItem('id_token', user.access_token)
-          // Dispatch the success action
-          dispatch(receiveLogin(user))
-        }
-      }).catch(err => console.log("Error: ", err))
-  }
+        return fetch('/login', config)
+            .then(response => response.json().then(user => ({ user, response })))
+            .then(({ user, response }) =>  {
+            if (!response.ok) {
+
+                dispatch(loginError(user.message))
+                return Promise.reject(user)
+
+            } else {
+
+                localStorage.setItem('id_token', user.token)
+//                localStorage.setItem('access_token', user.access_token)
+
+                dispatch(receiveLogin(user))
+
+            }
+        }).catch(err => console.log("Error: ", err))
+    }
 }
 
 export function logoutUser() {
-  return dispatch => {
-    dispatch(requestLogout())
-    localStorage.removeItem('id_token')
-    localStorage.removeItem('access_token')
-    dispatch(receiveLogout())
-  }
+    return dispatch => {
+        dispatch(requestLogout())
+        localStorage.removeItem('id_token')
+//        localStorage.removeItem('access_token')
+        dispatch(receiveLogout())
+    }
 }
 
 
 function requestLogin(creds) {
-  return {
-    type: LOGIN_REQUEST,
-    isFetching: true,
-    isAuthenticated: false,
-    creds
-  }
+    return {
+        type: LOGIN_REQUEST,
+        isFetching: true,
+        isAuthenticated: false,
+        creds
+    }
 }
 
 function receiveLogin(user) {
-  return {
-    type: LOGIN_SUCCESS,
-    isFetching: false,
-    isAuthenticated: true,
-    id_token: user.id_token
-  }
+    return {
+        type: LOGIN_SUCCESS,
+        isFetching: false,
+        isAuthenticated: true,
+        id_token: user.id_token
+    }
 }
 
 function loginError(message) {
-  return {
-    type: LOGIN_FAILURE,
-    isFetching: false,
-    isAuthenticated: false,
-    message
-  }
+    return {
+        type: LOGIN_FAILURE,
+        isFetching: false,
+        isAuthenticated: false,
+        message
+    }
 }
 
 function requestLogout() {
-  return {
-    type: LOGOUT_REQUEST,
-    isFetching: true,
-    isAuthenticated: true
-  }
+    return {
+        type: LOGOUT_REQUEST,
+        isFetching: true,
+        isAuthenticated: true
+    }
 }
 
 function receiveLogout() {
-  return {
-    type: LOGOUT_SUCCESS,
-    isFetching: false,
-    isAuthenticated: false
-  }
+    return {
+        type: LOGOUT_SUCCESS,
+        isFetching: false,
+        isAuthenticated: false
+    }
 }

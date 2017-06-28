@@ -10,7 +10,10 @@ export function addBook(book) {
             }
         }).then( response => response.json())
           .then( book => dispatch( {type: 'ADD_BOOK', payload: book}) )
-          .catch(console.log)
+          .catch( resp => {
+            console.log(resp);
+            dispatch({type: 'ADD_BOOK', payload: []})
+        })
     }
     
 }

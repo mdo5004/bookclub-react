@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import BookShow from '../components/BookShow';
 import {NavLink} from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -10,7 +11,7 @@ import { bindActionCreators } from 'redux';
 export class BookIndex extends React.Component {
 
     render() {
-    
+        debugger
         const books = this.props.books.map( (book,index) => {
             return <div className="list-group-item" key={index}><BookShow book={book}/>
                 <Button bsSize="small" onClick={ (event) => this.removeBookFromList(event,book.id) }>remove</Button>
@@ -37,5 +38,8 @@ function mapDispatchToProps(dispatch){
     return bindActionCreators({
         removeBook: removeBook,
     }, dispatch)  
+}
+BookIndex.defaultProps = {
+    books: [],
 }
 export const ConnectedBookIndex = connect(mapStateToProps,mapDispatchToProps)(BookIndex)
