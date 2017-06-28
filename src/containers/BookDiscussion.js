@@ -3,7 +3,6 @@ import DiscussionShow from '../components/DiscussionShow'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createNewComment, loadDiscussion } from '../actions/DiscussionActions'
-import { getReviewWidget } from '../actions/ReviewActions'
 import { FormControl } from 'react-bootstrap';
 
 export class BookDiscussion extends React.Component {
@@ -35,7 +34,6 @@ export class BookDiscussion extends React.Component {
                         onChange={this.handleDiscussionChange}/>
                     <input type="submit" hidden/>
                 </form>
-                {this.props.reviews}
             </div>
         )
     }
@@ -65,12 +63,10 @@ export class BookDiscussion extends React.Component {
     componentDidMount(){
         console.log("Component did mount")
         this.props.loadDiscussion(this.props.id)
-        this.props.getReviewWidget(this.props.id)
     }
     componentDidUpdate(prevProps){
         if (this.props.id !== prevProps.id){
             this.props.loadDiscussion(this.props.id)
-            this.props.getReviewWidget(this.props.id)
             console.log("Component props id did update")
             console.log("Furthest page: " + this.props.furthestPage)
         }
@@ -81,7 +77,6 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         createNewComment: createNewComment,
         loadDiscussion: loadDiscussion,
-        getReviewWidget: getReviewWidget,
     }, dispatch)
 }
 
@@ -106,7 +101,6 @@ const mapStateToProps = (state,ownProps) => {
         book: book,
         comments: comments,
         user: state.user,
-        reviews: state.reviews.reviews_widget
     })
 }
 BookDiscussion.defaultProps = {
