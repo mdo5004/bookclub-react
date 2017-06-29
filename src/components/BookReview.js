@@ -12,12 +12,11 @@ export default function bookReview(props) {
     return (
         <div>
             <Media>
-                <Media.Left>
-                    <img width={64} height={64} src={props.review.small_image_url} alt="Image"/>
-                </Media.Left>
                 <Media.Body>
-                    <Media.Heading>{props.review.name} - {props.review.location}</Media.Heading>
-                    <p>{edited_body}</p><p>{rating}</p>
+                    <Media.Heading><a href={props.review.book_url}>{props.review.book_title}</a></Media.Heading>
+                    <p>{rating}</p>
+                    <p>{props.review.name}, {props.review.location}</p>
+                    <p>{edited_body}</p>
                 </Media.Body>
             </Media>
         </div>
