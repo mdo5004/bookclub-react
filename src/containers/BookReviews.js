@@ -10,7 +10,7 @@ export class BookReviews extends React.Component {
         })
         return (
             <div>
-               Latest Reviews
+               <h2>Recent Reviews</h2>
                 {reviews}
             </div>
             
@@ -25,5 +25,7 @@ const mapStateToProps = (state,ownProps) => {
         reviews: state.reviews
     })
 }
-
+BookReviews.defaultProps = {
+    reviews: [],
+}
 export const ConnectedBookReviews = connect(mapStateToProps)(BookReviews)

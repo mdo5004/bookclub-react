@@ -18,7 +18,7 @@ export class BookDiscussion extends React.Component {
         
         return(
             <div>
-                <h1>Discussion</h1>
+                <h2>Discussion</h2>
                 <DiscussionShow comments={this.props.comments}/>
                 <form onSubmit={this.handleOnSubmit}>
 

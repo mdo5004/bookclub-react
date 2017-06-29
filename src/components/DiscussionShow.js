@@ -6,7 +6,7 @@ export default class DiscussionShow extends React.Component {
     render() {
         var divStyle = {
             backgroundColor: 'white',
-            height: '420px',
+            height: '600px',
 
         }
         let comments = this.props.comments.map( (comment,index) =>{

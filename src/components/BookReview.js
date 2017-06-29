@@ -1,5 +1,5 @@
 import React from 'react';
-import { Media, Glyphicon } from 'react-bootstrap';
+import { Media, Panel, Glyphicon } from 'react-bootstrap';
 
 export default function bookReview(props) {
     const edited_body = props.review.body.replace("<br />", "")
@@ -8,17 +8,19 @@ export default function bookReview(props) {
     for ( var i = 0; i < n_stars; i++) {
         rating.push(<Glyphicon glyph="star" />)
     }
-    debugger
+    const createMarkup = () => {
+        return {__html: edited_body}
+    }
     return (
-        <div>
+        <Panel> 
             <Media>
                 <Media.Body>
                     <Media.Heading><a href={props.review.book_url}>{props.review.book_title}</a></Media.Heading>
                     <p>{rating}</p>
                     <p>{props.review.name}, {props.review.location}</p>
-                    <p>{edited_body}</p>
+                    <div dangerouslySetInnerHTML={createMarkup()} />
                 </Media.Body>
             </Media>
-        </div>
+        </Panel>
     )
 }
