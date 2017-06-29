@@ -10,7 +10,7 @@ export class BookReviews extends React.Component {
         })
         return (
             <div>
-               Reviews
+               Latest Reviews
                 {reviews}
             </div>
             

@@ -20,7 +20,7 @@ export class App extends Component {
             <Router>
                <div>
                 <NavBar />
-                <div className="App container">
+                <div className="App">
                     <div className="col-md-2">
                         <Route path='/' component={BookIndex} />
                     </div>
